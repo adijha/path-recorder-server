@@ -1,6 +1,10 @@
+require('dotenv').config();
+
 require('./models/User');
 require('./models/Track');
+
 const express = require('express');
+
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
@@ -13,7 +17,7 @@ app.use(bodyParser.json());
 app.use(authRoutes);
 app.use(trackRoutes);
 
-const mongoUri = 'mongodb+srv://adi:mern@devconnector-5hotg.mongodb.net/routeMobileApp?retryWrites=true&w=majority';
+const mongoUri = process.env.mongoURI;
 mongoose.connect(mongoUri, {
 	useNewUrlParser: true,
 	useCreateIndex: true
